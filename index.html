@@ -1,0 +1,280 @@
+<!-- 
+  Project: EcoLoop (3R Sustainability Platform)
+  Author: Shaurya Singh
+  Institution: RNTU Presentation
+  Copyright (c) 2026 Shaurya Singh. All rights reserved.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoLoop - 3R Sustainability Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .emerald-gradient { background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%); }
+    </style>
+</head>
+<body class="bg-emerald-50/40 text-slate-800 antialiased pb-28 min-h-screen">
+
+    <!-- APP HEADER -->
+    <header class="emerald-gradient text-white sticky top-0 z-50 shadow-lg px-4 py-3">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2.5">
+                <div class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center shadow-inner border border-white/30">
+                    <i class="fa-solid fa-recycle text-emerald-200 text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-tight leading-none text-white">EcoLoop<span class="text-emerald-300">.</span></h1>
+                    <p class="text-[10px] text-emerald-200 font-medium tracking-wide uppercase">RNTU Campus • 3R Hub v1.0</p>
+                </div>
+            </div>
+            <button onclick="alert('EcoLoop: Developed by Shaurya Singh for RNTU Hackathon/Project Presentation.')" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition">
+                <i class="fa-solid fa-info text-white text-sm"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN APP CONTAINER -->
+    <main class="max-w-md mx-auto p-4 space-y-4">
+
+        <!-- GLOBAL CAMPUS IMPACT BANNER -->
+        <div class="bg-white p-3.5 rounded-3xl shadow-sm border border-emerald-100 flex items-center justify-between text-xs">
+            <div class="flex items-center space-x-2.5">
+                <div class="w-8 h-8 bg-emerald-100 text-emerald-700 rounded-xl flex items-center justify-center">
+                    <i class="fa-solid fa-earth-americas"></i>
+                </div>
+                <div>
+                    <p class="font-bold text-slate-700">RNTU Community Impact</p>
+                    <p class="text-[10px] text-slate-400">Live Active Score</p>
+                </div>
+            </div>
+            <span class="bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-extrabold text-[11px]" id="campus-impact">1,420 kg CO₂</span>
+        </div>
+
+        <!-- NATURE AI TEASER BANNER -->
+        <div class="bg-gradient-to-r from-emerald-800 to-slate-900 text-white rounded-3xl p-4 shadow-lg border border-emerald-500/30">
+            <div class="flex items-start space-x-3">
+                <div class="w-9 h-9 bg-emerald-500/20 border border-emerald-400/40 rounded-2xl flex items-center justify-center flex-shrink-0 text-emerald-300">
+                    <i class="fa-solid fa-tree"></i>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <h3 class="text-xs font-extrabold text-white">Meet <span class="text-emerald-400">Nature AI</span></h3>
+                        <span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-bold">Coming Soon v2.0</span>
+                    </div>
+                    <p class="text-[11px] text-slate-300 leading-relaxed mt-0.5">
+                        Nature knows everything and is coming soon to answer all campus eco-queries!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 1: REDUCE (IMPACT TRACKER) -->
+        <section id="tab-tracker" class="tab-content space-y-4">
+            <div class="bg-white p-5 rounded-3xl shadow-sm border border-emerald-100/80">
+                <h2 class="text-base font-bold text-slate-800 mb-3 flex items-center">
+                    <i class="fa-solid fa-square-plus text-emerald-600 mr-2"></i>Log Saved Waste
+                </h2>
+                <div class="space-y-3">
+                    <select id="item-type" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-semibold focus:outline-none">
+                        <option value="plastic">PET Plastic Bottle (~100g CO₂ saved)</option>
+                        <option value="cardboard">Cardboard Packaging (~250g CO₂ saved)</option>
+                        <option value="glass">Glass Jar (~300g CO₂ saved)</option>
+                        <option value="metal">Aluminum Can (~180g CO₂ saved)</option>
+                    </select>
+                    <button onclick="logSavings()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-2xl text-xs shadow-md shadow-emerald-600/20 transition">
+                        <i class="fa-solid fa-leaf mr-2"></i>Calculate & Save
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white p-4 rounded-3xl border border-emerald-100 shadow-sm text-center">
+                    <p class="text-[11px] font-semibold text-slate-400">Your CO₂ Prevented</p>
+                    <p id="stat-co2" class="text-xl font-extrabold text-slate-800 mt-1">0 g</p>
+                </div>
+                <div class="bg-white p-4 rounded-3xl border border-emerald-100 shadow-sm text-center">
+                    <p class="text-[11px] font-semibold text-slate-400">Eco Rank</p>
+                    <p id="stat-rank" class="text-sm font-extrabold text-teal-700 mt-1">Eco Seedling</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: REUSE (SWAP BOARD) -->
+        <section id="tab-swap" class="tab-content hidden space-y-4">
+            <div class="bg-white p-5 rounded-3xl shadow-sm border border-emerald-100/80">
+                <h2 class="text-base font-bold text-slate-800 mb-1 flex items-center">
+                    <i class="fa-solid fa-hand-holding-heart text-emerald-600 mr-2"></i>Post Free Item
+                </h2>
+                <p class="text-xs text-slate-500 mb-3">Share books or materials with fellow students.</p>
+                <div class="space-y-2.5">
+                    <input type="text" id="swap-title" placeholder="Item Name (e.g. Class 9 Physics Book)" class="w-full p-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-semibold focus:outline-none">
+                    <button onclick="postSwapItem()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-2xl text-xs shadow-md transition">
+                        List Item Free
+                    </button>
+                </div>
+            </div>
+            <div id="swap-list" class="space-y-2.5"></div>
+        </section>
+
+        <!-- TAB 3: RECYCLE (UPCYCLE WORKSHOP) -->
+        <section id="tab-upcycle" class="tab-content hidden space-y-4">
+            <div class="bg-white p-5 rounded-3xl shadow-sm border border-emerald-100/80">
+                <h2 class="text-base font-bold text-slate-800 mb-3">Upcycling DIY Lab</h2>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="showGuide('plastic')" class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-bold text-slate-700 hover:bg-emerald-50 hover:border-emerald-500 transition">Plastic Bottle Planter</button>
+                    <button onclick="showGuide('cardboard')" class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-bold text-slate-700 hover:bg-emerald-50 hover:border-emerald-500 transition">Cardboard Organizer</button>
+                    <button onclick="showGuide('glass')" class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-bold text-slate-700 hover:bg-emerald-50 hover:border-emerald-500 transition">Glass Jar Pen Holder</button>
+                    <button onclick="showGuide('newspaper')" class="p-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-bold text-slate-700 hover:bg-emerald-50 hover:border-emerald-500 transition">Newspaper Basket</button>
+                </div>
+            </div>
+            <div id="guide-box" class="bg-white p-5 rounded-3xl shadow-sm border border-emerald-100 hidden">
+                <h3 id="guide-title" class="font-bold text-slate-800 text-sm mb-1"></h3>
+                <p id="guide-steps" class="text-xs text-slate-600 leading-relaxed whitespace-pre-line"></p>
+            </div>
+        </section>
+
+        <!-- TAB 4: CHALLENGES -->
+        <section id="tab-challenges" class="tab-content hidden space-y-4">
+            <div class="bg-white p-5 rounded-3xl shadow-sm border border-emerald-100/80">
+                <h2 class="text-base font-bold text-slate-800 mb-1 flex items-center">
+                    <i class="fa-solid fa-award text-emerald-600 mr-2"></i>Daily Green Challenges
+                </h2>
+                <p class="text-xs text-slate-500 mb-3">Complete tasks to boost your campus eco-score.</p>
+                <div class="space-y-2.5">
+                    <label class="flex items-center space-x-3 p-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-semibold text-slate-700 cursor-pointer">
+                        <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded" onclick="completeChallenge(this)">
+                        <span>Carpooled or used public transit today</span>
+                    </label>
+                    <label class="flex items-center space-x-3 p-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-semibold text-slate-700 cursor-pointer">
+                        <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded" onclick="completeChallenge(this)">
+                        <span>Carried a reusable water bottle</span>
+                    </label>
+                    <label class="flex items-center space-x-3 p-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs font-semibold text-slate-700 cursor-pointer">
+                        <input type="checkbox" class="w-4 h-4 text-emerald-600 rounded" onclick="completeChallenge(this)">
+                        <span>Turned off unused electrical appliances</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER COPYRIGHT -->
+    <footer class="text-center py-2 text-[10px] text-slate-400 font-medium">
+        © 2026 Shaurya Singh. Built for RNTU. All Rights Reserved.
+    </footer>
+
+    <!-- FLOATING BOTTOM NAVIGATION -->
+    <nav class="fixed bottom-3 left-4 right-4 max-w-md mx-auto bg-white/90 backdrop-blur-md border border-slate-200/80 rounded-3xl p-2 shadow-xl z-40 flex justify-around">
+        <button onclick="switchTab('tracker')" id="nav-tracker" class="flex-1 py-2 rounded-2xl text-emerald-600 bg-emerald-50/60 font-bold flex flex-col items-center transition">
+            <i class="fa-solid fa-chart-pie text-base mb-0.5"></i>
+            <span class="text-[9px]">Reduce</span>
+        </button>
+        <button onclick="switchTab('swap')" id="nav-swap" class="flex-1 py-2 rounded-2xl text-slate-400 font-bold flex flex-col items-center transition">
+            <i class="fa-solid fa-arrow-rotate-left text-base mb-0.5"></i>
+            <span class="text-[9px]">Reuse</span>
+        </button>
+        <button onclick="switchTab('upcycle')" id="nav-upcycle" class="flex-1 py-2 rounded-2xl text-slate-400 font-bold flex flex-col items-center transition">
+            <i class="fa-solid fa-wand-magic-sparkles text-base mb-0.5"></i>
+            <span class="text-[9px]">Recycle</span>
+        </button>
+        <button onclick="switchTab('challenges')" id="nav-challenges" class="flex-1 py-2 rounded-2xl text-slate-400 font-bold flex flex-col items-center transition">
+            <i class="fa-solid fa-award text-base mb-0.5"></i>
+            <span class="text-[9px]">Challenges</span>
+        </button>
+    </nav>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('nav button').forEach(el => {
+                el.className = "flex-1 py-2 rounded-2xl text-slate-400 font-bold flex flex-col items-center transition";
+            });
+            document.getElementById(`tab-${tab}`).classList.remove('hidden');
+            document.getElementById(`nav-${tab}`).className = "flex-1 py-2 rounded-2xl text-emerald-600 bg-emerald-50/60 font-bold flex flex-col items-center transition";
+        }
+
+        let totalCo2 = parseInt(localStorage.getItem('ecoloop_co2')) || 0;
+        updateStats();
+
+        function logSavings() {
+            const type = document.getElementById('item-type').value;
+            const factor = { plastic: 100, cardboard: 250, glass: 300, metal: 180 }[type];
+            totalCo2 += factor;
+            localStorage.setItem('ecoloop_co2', totalCo2);
+            updateStats();
+            alert(`Saved ${factor}g of CO₂ emissions!`);
+        }
+
+        function updateStats() {
+            document.getElementById('stat-co2').innerText = `${totalCo2} g`;
+            let rank = "Eco Seedling 🌱";
+            if (totalCo2 > 1000) rank = "Eco Warrior 🌿";
+            else if (totalCo2 > 400) rank = "Green Advocate 🌳";
+            document.getElementById('stat-rank').innerText = rank;
+        }
+
+        let swapItems = JSON.parse(localStorage.getItem('ecoloop_swaps')) || [
+            { title: "Class 9 Physics Book" },
+            { title: "Unused Sketchbook" }
+        ];
+        renderSwaps();
+
+        function postSwapItem() {
+            const title = document.getElementById('swap-title').value.trim();
+            if (!title) return alert("Please enter an item name.");
+            swapItems.unshift({ title });
+            localStorage.setItem('ecoloop_swaps', JSON.stringify(swapItems));
+            document.getElementById('swap-title').value = "";
+            renderSwaps();
+        }
+
+        function renderSwaps() {
+            const list = document.getElementById('swap-list');
+            list.innerHTML = swapItems.map((item, idx) => `
+                <div class="bg-white p-3 rounded-2xl border border-slate-100 flex justify-between items-center text-xs">
+                    <span class="font-bold text-slate-800"><i class="fa-solid fa-box-open text-emerald-600 mr-2"></i>${item.title}</span>
+                    <button onclick="claimItem(${idx})" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1.5 rounded-xl">Claim</button>
+                </div>
+            `).join('');
+        }
+
+        function claimItem(idx) {
+            swapItems.splice(idx, 1);
+            localStorage.setItem('ecoloop_swaps', JSON.stringify(swapItems));
+            renderSwaps();
+        }
+
+        const guides = {
+            plastic: "1. Cut a plastic bottle in half.\n2. Punch drainage holes at the bottom.\n3. Fill with soil and plant a small succulent.",
+            cardboard: "1. Flatten old boxes.\n2. Cut into rectangular strips and glue them as dividers inside a shoebox.",
+            glass: "1. Wash and dry old glass jam jars.\n2. Wrap with jute rope or paint them to use as pen holders.",
+            newspaper: "1. Roll newspaper sheets into tight sticks.\n2. Weave them together to create a sturdy eco-friendly tray."
+        };
+
+        function showGuide(mat) {
+            document.getElementById('guide-box').classList.remove('hidden');
+            document.getElementById('guide-title').innerText = mat.toUpperCase() + " UPCYCLE GUIDE";
+            document.getElementById('guide-steps').innerText = guides[mat];
+        }
+
+        function completeChallenge(checkbox) {
+            if(checkbox.checked) {
+                totalCo2 += 50;
+                localStorage.setItem('ecoloop_co2', totalCo2);
+                updateStats();
+                alert("Challenge completed! +50g CO₂ impact bonus added.");
+            }
+        }
+    </script>
+</body>
+</html>
