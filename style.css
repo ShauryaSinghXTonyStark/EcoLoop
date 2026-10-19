@@ -1,0 +1,94 @@
+:root {
+    --primary: #059669;
+    --primary-dark: #047857;
+    --accent: #10B981;
+    --bg-gradient: linear-gradient(135deg, #065F46 0%, #047857 50%, #10B981 100%);
+    --bg-glass: rgba(255, 255, 255, 0.9);
+    --text-main: #1F2937;
+    --card-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+[data-theme="dark"] {
+    --primary: #10B981;
+    --primary-dark: #059669;
+    --accent: #34D399;
+    --bg-gradient: linear-gradient(135deg, #111827 0%, #1F2937 50%, #065F46 100%);
+    --bg-glass: rgba(17, 24, 39, 0.85);
+    --text-main: #F3F4F6;
+    --card-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; transition: background 0.3s, color 0.3s; }
+
+body { background: var(--bg-gradient); color: var(--text-main); min-height: 100vh; padding: 20px; }
+.container { max-width: 1000px; margin: 0 auto; }
+
+/* Navigation Bar */
+.navbar {
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--bg-glass); backdrop-filter: blur(12px);
+    padding: 15px 25px; border-radius: 12px; margin-bottom: 25px;
+    box-shadow: var(--card-shadow); flex-wrap: wrap; gap: 10px;
+}
+.nav-links { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.nav-links a { color: var(--text-main); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+.nav-links a:hover { color: var(--primary); }
+.theme-btn { background: none; border: 2px solid var(--primary); color: var(--text-main); padding: 5px 10px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+
+.card {
+    background: var(--bg-glass); backdrop-filter: blur(12px);
+    border-radius: 16px; padding: 25px; margin-bottom: 20px; box-shadow: var(--card-shadow);
+}
+.card h2 { color: var(--primary-dark); margin-bottom: 15px; font-size: 1.4rem; border-bottom: 2px solid var(--accent); padding-bottom: 8px; }
+
+button {
+    background: var(--primary); color: white; border: none; padding: 12px 20px; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer; width: 100%; transition: background 0.2s;
+}
+button:hover { background: var(--primary-dark); }
+input, select, textarea { width: 100%; padding: 12px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 1rem; outline: none; margin-bottom: 15px; background: white; color: #1F2937; }
+/* Custom Animated Mascot (EcoBuddy) */
+.mascot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    animation: floatMascot 3s ease-in-out infinite;
+}
+
+.mascot-avatar {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, #10B981, #047857);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    box-shadow: 0 10px 20px rgba(5,150,105,0.4);
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    position: relative;
+}
+
+.mascot-avatar:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.mascot-speech {
+    background: var(--bg-glass);
+    backdrop-filter: blur(8px);
+    padding: 10px 16px;
+    border-radius: 12px;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    text-align: center;
+    max-width: 280px;
+}
+
+@keyframes floatMascot {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoLoop - Nature & Biodiversity</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <h2>🌿 RNTU Green Spaces</h2>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="marketplace.html">Marketplace</a>
+                <a href="calculator.html">Calculator</a>
+                <a href="nature.html" style="color: var(--primary);">Nature & Bio</a>
+                <a href="ai.html">EcoAI Assistant</a>
+                <button class="theme-btn" onclick="toggleTheme()">🌓 Theme</button>
+            </div>
+        </nav>
+
+        <div class="card">
+            <h2>Campus Biodiversity & Tree Planting Tracker</h2>
+            <p style="margin-bottom: 15px;">Monitor plantation drives, campus flora inventory, and ecological restoration statistics across Rabindranath Tagore University.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: rgba(5,150,105,0.1); padding: 15px; border-radius: 10px; text-align: center;">
+                    <h3 style="color: var(--primary); font-size: 1.8rem;">1,420</h3>
+                    <p style="font-weight: 600; font-size: 0.9rem;">Trees Planted</p>
+                </div>
+                <div style="background: rgba(5,150,105,0.1); padding: 15px; border-radius: 10px; text-align: center;">
+                    <h3 style="color: var(--primary); font-size: 1.8rem;">85%</h3>
+                    <p style="font-weight: 600; font-size: 0.9rem;">Campus Green Cover</p>
+                </div>
+                <div style="background: rgba(5,150,105,0.1); padding: 15px; border-radius: 10px; text-align: center;">
+                    <h3 style="color: var(--primary); font-size: 1.8rem;">340 kg</h3>
+                    <p style="font-weight: 600; font-size: 0.9rem;">Daily Carbon Offset</p>
+                </div>
+            </div>
+
+            <label>Log a New Tree Plantation Drive:</label>
+            <input type="text" id="treeSpecies" placeholder="Enter Tree Species (e.g., Neem, Peepal)">
+            <input type="number" id="treeCount" placeholder="Number of saplings planted" min="1">
+            <button onclick="logTrees()">Record Plantation</button>
+            <div id="treeResult" class="card" style="margin-top: 15px; display:none; background: #ECFDF5; color: #065F46;"></div>
+        </div>
+    </div>
+    <script>
+        function logTrees() {
+            const species = document.getElementById('treeSpecies').value;
+            const count = document.getElementById('treeCount').value;
+            if(!species || !count) { alert('Please fill in all fields'); return; }
+            const res = document.getElementById('treeResult');
+            res.style.display = 'block';
+            res.innerHTML = `🌳 Successfully registered <strong>${count} saplings</strong> of <strong>${species}</strong> into the RNTU green registry!`;
+        }
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.setAttribute('data-theme', html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        }
+    </script>
+</body>
+</html>

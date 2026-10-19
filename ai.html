@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoLoop - EcoAI Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .chat-box { height: 320px; overflow-y: auto; background: rgba(0,0,0,0.03); border-radius: 10px; padding: 15px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 10px; }
+        .message { padding: 10px 14px; border-radius: 10px; max-width: 80%; font-size: 0.95rem; line-height: 1.4; }
+        .user-msg { background: var(--primary); color: white; margin-left: auto; border-bottom-right-radius: 2px; }
+        .ai-msg { background: rgba(5,150,105,0.15); color: var(--text-main); margin-right: auto; border-bottom-left-radius: 2px; }
+        .chat-input-area { display: flex; gap: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <h2>✨ EcoAI Assistant</h2>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="marketplace.html">Marketplace</a>
+                <a href="calculator.html">Calculator</a>
+                <a href="nature.html">Nature & Bio</a>
+                <a href="ai.html" style="color: var(--primary);">EcoAI Assistant</a>
+                <button class="theme-btn" onclick="toggleTheme()">🌓 Theme</button>
+            </div>
+        </nav>
+
+        <div class="card">
+            <h2>Your Intelligent Sustainability Consultant</h2>
+            <p style="margin-bottom: 15px; font-size: 0.9rem;">Ask me anything about zero-waste strategies, recycling procedures, carbon reduction metrics, or backend C++/Java integration for RNTU!</p>
+            
+            <div id="chatContainer" class="chat-box">
+                <div class="message ai-msg">Hello! I am your AI Eco Advisor. How can I help you optimize your 3R sustainability goals today?</div>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="userInput" placeholder="Ask about recycling, carbon credits, or code..." onkeypress="handleKeyPress(event)" style="margin-bottom: 0;">
+                <button onclick="sendMessage()" style="width: 140px; margin-bottom: 0;">Send</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const text = input.value.trim();
+            if(!text) return;
+
+            const chat = document.getElementById('chatContainer');
+            
+            chat.innerHTML += `<div class="message user-msg">${text}</div>`;
+            input.value = '';
+            chat.scrollTop = chat.scrollHeight;
+
+            setTimeout(() => {
+                let response = "That's a fantastic sustainability query! Implementing automated sorting algorithms in C++ and structured Java data objects will ensure your campus waste tracking remains extremely efficient.";
+                
+                const lower = text.toLowerCase();
+                if(lower.includes('hello') || lower.includes('hi')) {
+                    response = "Hello! Ready to make RNTU the greenest campus with EcoLoop?";
+                } else if(lower.includes('plastic') || lower.includes('waste')) {
+                    response = "Plastic waste accounts for high carbon emissions. EcoLoop recommends mechanical recycling and converting polymer waste into reusable industrial pellets!";
+                } else if(lower.includes('tree') || lower.includes('nature')) {
+                    response = "Planting native species like Neem and Peepal increases campus biodiversity index by up to 40%. Check our Nature & Bio tab to log them!";
+                }
+
+                chat.innerHTML += `<div class="message ai-msg">${response}</div>`;
+                chat.scrollTop = chat.scrollHeight;
+            }, 600);
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.setAttribute('data-theme', html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        }
+    </script>
+</body>
+</html>

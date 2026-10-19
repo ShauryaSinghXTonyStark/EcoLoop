@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoLoop - 3R Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .product-card { background: var(--bg-glass); border-radius: 12px; padding: 20px; box-shadow: var(--card-shadow); border: 1px solid rgba(255,255,255,0.2); }
+        .product-card h3 { color: var(--primary-dark); margin-bottom: 10px; }
+        .price { font-weight: 700; color: var(--primary); font-size: 1.1rem; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <h2>🛍️ EcoExchange</h2>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="marketplace.html" style="color: var(--primary);">Marketplace</a>
+                <a href="calculator.html">Calculator</a>
+                <a href="nature.html">Nature & Bio</a>
+                <a href="ai.html">EcoAI Assistant</a>
+                <button class="theme-btn" onclick="toggleTheme()">🌓 Theme</button>
+            </div>
+        </nav>
+
+        <div class="card">
+            <h2>Sustainable & Recycled Resource Catalog</h2>
+            <div class="grid">
+                <div class="product-card">
+                    <h3>Recycled Polymer Pellets</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 10px;">High-grade recycled plastic raw material for industrial 3R manufacturing.</p>
+                    <div class="price">150 Eco-Points / kg</div>
+                    <button onclick="alert('Item added to your 3R exchange cart!')">Request Exchange</button>
+                </div>
+                <div class="product-card">
+                    <h3>Organic Compost Fertilizer</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 10px;">Nutrient-rich compost processed from university organic food waste.</p>
+                    <div class="price">80 Eco-Points / bag</div>
+                    <button onclick="alert('Item added to your 3R exchange cart!')">Request Exchange</button>
+                </div>
+                <div class="product-card">
+                    <h3>Upcycled E-Waste Panels</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 10px;">Artisan decor panels built from discarded circuit boards and plastics.</p>
+                    <div class="price">300 Eco-Points</div>
+                    <button onclick="alert('Item added to your 3R exchange cart!')">Request Exchange</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.setAttribute('data-theme', html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        }
+    </script>
+</body>
+</html>

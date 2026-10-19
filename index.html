@@ -1,184 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoLoop - Elite 3R Sustainability Platform</title>
+    <title>EcoLoop - Home Dashboard</title>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#059669">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #059669;
-            --primary-dark: #047857;
-            --accent: #10B981;
-            --bg-glass: rgba(255, 255, 255, 0.85);
-            --text-main: #1F2937;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body {
-            background: linear-gradient(135deg, #065F46 0%, #047857 50%, #10B981 100%);
-            color: var(--text-main);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container { max-width: 900px; margin: 0 auto; }
-        
-        /* Language Bar */
-        .top-bar { display: flex; justify-content: flex-end; margin-bottom: 15px; }
-        .lang-select { padding: 8px 12px; border-radius: 6px; border: none; background: white; font-weight: 600; cursor: pointer; }
-
-        header { text-align: center; color: white; margin-bottom: 30px; }
-        header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 5px; }
-        header p { font-size: 1.1rem; opacity: 0.9; }
-        
-        .card {
-            background: var(--bg-glass);
-            backdrop-filter: blur(12px);
-            border-radius: 16px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-        .card h2 { color: var(--primary-dark); margin-bottom: 15px; font-size: 1.4rem; border-bottom: 2px solid var(--accent); padding-bottom: 8px; }
-        
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
-        input, select {
-            width: 100%; padding: 12px; border: 1px solid #D1D5DB; border-radius: 8px; font-size: 1rem; outline: none;
-        }
-        button {
-            background: var(--primary); color: white; border: none; padding: 12px 20px; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer; width: 100%; transition: background 0.2s;
-        }
-        button:hover { background: var(--primary-dark); }
-        .result-box {
-            margin-top: 15px; padding: 15px; background: #ECFDF5; border-left: 4px solid var(--primary); border-radius: 6px; font-weight: 600; color: #065F46; display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="container">
-        <!-- Language Switcher -->
-        <div class="top-bar">
-            <select id="langSelect" class="lang-select" onchange="changeLanguage()">
-                <option value="en">English</option>
-                <option value="hi">हिन्दी (Hindi)</option>
-                <option value="es">Español (Spanish)</option>
-            </select>
-        </div>
-
-        <header>
-            <h1 id="t-title">🌍 EcoLoop Elite</h1>
-            <p id="t-subtitle">RNTU Advanced 3R Sustainability & Carbon Intelligence Platform</p>
-        </header>
-
-        <div class="card">
-            <h2 id="t-calc-title">📊 Smart Impact & Carbon Calculator</h2>
-            <div class="form-group">
-                <label id="t-label-cat" for="wasteType">Select Primary Waste Category:</label>
-                <select id="wasteType">
-                    <option value="organic" id="t-opt-organic">Organic Waste (Food/Garden)</option>
-                    <option value="plastic" id="t-opt-plastic">Plastic Packaging & Bottles</option>
-                    <option value="electronic" id="t-opt-electronic">E-Waste & Gadgets</option>
-                    <option value="paper" id="t-opt-paper">Paper & Cardboard</option>
-                </select>
+        <nav class="navbar">
+            <h2>🌍 EcoLoop</h2>
+            <div class="nav-links">
+                <a href="index.html" style="color: var(--primary);">Home</a>
+                <a href="marketplace.html">3R Marketplace</a>
+                <a href="calculator.html">Calculator</a>
+                <a href="nature.html">Nature & Bio</a>
+                <a href="ai.html">EcoAI Assistant</a>
+                <button class="theme-btn" onclick="toggleTheme()">🌓 Theme</button>
             </div>
-            <div class="form-group">
-                <label id="t-label-amt" for="wasteAmount">Estimated Monthly Quantity (in kg):</label>
-                <input type="number" id="wasteAmount" placeholder="e.g., 25" min="1">
+        </nav>
+
+        <div class="card" style="text-align: center; padding: 40px;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px; color: var(--primary-dark);">Welcome to EcoLoop Elite</h1>
+            <p style="font-size: 1.1rem; margin-bottom: 20px;">RNTU Advanced 3R Sustainability Platform & Green Exchange</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="marketplace.html"><button style="width: auto; padding: 12px 25px;">Explore Marketplace</button></a>
+                <a href="calculator.html"><button style="width: auto; padding: 12px 25px; background: #047857;">Open Calculator</button></a>
             </div>
-            <button id="t-btn-calc" onclick="calculateImpact()">Calculate Eco-Score & Savings</button>
-            <div id="impactResult" class="result-box"></div>
         </div>
     </div>
-
     <script>
-        // Dictionary for multi-language translations
-        const translations = {
-            en: {
-                title: "🌍 EcoLoop Elite",
-                subtitle: "RNTU Advanced 3R Sustainability & Carbon Intelligence Platform",
-                calcTitle: "📊 Smart Impact & Carbon Calculator",
-                labelCat: "Select Primary Waste Category:",
-                optOrganic: "Organic Waste (Food/Garden)",
-                optPlastic: "Plastic Packaging & Bottles",
-                optElectronic: "E-Waste & Gadgets",
-                optPaper: "Paper & Cardboard",
-                labelAmt: "Estimated Monthly Quantity (in kg):",
-                btnCalc: "Calculate Eco-Score & Savings"
-            },
-            hi: {
-                title: "🌍 इकोलूप एलीट (EcoLoop Elite)",
-                subtitle: "आरएनटीयू उन्नत 3आर स्थिरता और कार्बन इंटेलिजेंस प्लेटफॉर्म",
-                calcTitle: "📊 स्मार्ट इम्पैक्ट और कार्बन कैलकुलेटर",
-                labelCat: "प्राथमिक कचरा श्रेणी चुनें:",
-                optOrganic: "जैविक कचरा (भोजन/बगीचा)",
-                optPlastic: "प्लास्टिक पैकेजिंग और बोतलें",
-                optElectronic: "ई-कचरा और गैजेट्स",
-                optPaper: "कागज और गत्ता",
-                labelAmt: "अनुमानित मासिक मात्रा (किग्रा में):",
-                btnCalc: "इको-स्कोर और बचत की गणना करें"
-            },
-            es: {
-                title: "🌍 EcoLoop Elite",
-                subtitle: "Plataforma Avanzada de Sostenibilidad 3R e Inteligencia de Carbono RNTU",
-                calcTitle: "📊 Calculadora Inteligente de Impacto y Carbono",
-                labelCat: "Seleccione la categoría de residuos principal:",
-                optOrganic: "Residuos Orgánicos (Alimentos/Jardín)",
-                optPlastic: "Envases de Plástico y Botellas",
-                optElectronic: "Residuos Electrónicos y Gadgets",
-                optPaper: "Papel y Cartón",
-                labelAmt: "Cantidad mensual estimada (en kg):",
-                btnCalc: "Calcular Eco-Puntuación y Ahorros"
-            }
-        };
-
-        function changeLanguage() {
-            const lang = document.getElementById('langSelect').value;
-            const t = translations[lang];
-
-            document.getElementById('t-title').innerText = t.title;
-            document.getElementById('t-subtitle').innerText = t.subtitle;
-            document.getElementById('t-calc-title').innerText = t.calcTitle;
-            document.getElementById('t-label-cat').innerText = t.labelCat;
-            document.getElementById('t-opt-organic').innerText = t.optOrganic;
-            document.getElementById('t-opt-plastic').innerText = t.optPlastic;
-            document.getElementById('t-opt-electronic').innerText = t.optElectronic;
-            document.getElementById('t-opt-paper').innerText = t.optPaper;
-            document.getElementById('t-label-amt').innerText = t.labelAmt;
-            document.getElementById('t-btn-calc').innerText = t.btnCalc;
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.setAttribute('data-theme', html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
         }
-
-        function calculateImpact() {
-            const type = document.getElementById('wasteType').value;
-            const amount = document.getElementById('wasteAmount').value;
-            const lang = document.getElementById('langSelect').value;
-            
-            if(!amount || amount <= 0) {
-                alert(lang === 'hi' ? 'कृपया किलोग्राम में वैध मात्रा दर्ज करें।' : 'Please enter a valid monthly quantity in kg.');
-                return;
-            }
-
-            let multiplier = 2.5;
-            if (type === 'plastic') multiplier = 4.2;
-            if (type === 'electronic') multiplier = 8.5;
-            if (type === 'organic') multiplier = 1.8;
-            
-            const co2Saved = (amount * multiplier).toFixed(2);
-            const rewardPoints = Math.round(amount * 15);
-
-            const resultBox = document.getElementById('impactResult');
-            resultBox.style.display = 'block';
-
-            if (lang === 'hi') {
-                resultBox.innerHTML = `✨ परिणाम: ${amount} किग्रा ${type} कचरे के प्रबंधन से लगभग <strong>${co2Saved} किग्रा CO₂</strong> की बचत होती है और आप नगरपालिका पुरस्कारों के लिए <strong>${rewardPoints} इको-पॉइंट्स</strong> अर्जित करते हैं!`;
-            } else if (lang === 'es') {
-                resultBox.innerHTML = `✨ Resultado: Manejar ${amount}kg de residuos de ${type} ahorra aproximadamente <strong>${co2Saved} kg de CO₂</strong> ¡y te otorga <strong>${rewardPoints} Eco-Puntos</strong>!`;
-            } else {
-                resultBox.innerHTML = `✨ Result: Managing ${amount}kg of ${type} waste saves approximately <strong>${co2Saved} kg of CO₂</strong> and earns you <strong>${rewardPoints} Eco-Points</strong> for municipal rewards!`;
-            }
-        }
+        
     </script>
 </body>
 </html>
+<!-- Interactive Mascot Widget -->
+<div class="mascot-container">
+    <div class="mascot-avatar" id="mascotBtn" onclick="reactMascot()">🌍</div>
+    <div id="mascotSpeech" class="mascot-speech">Hi! I'm EcoBuddy, your RNTU guide. Tap me!</div>
+</div>
+
+<script>
+    const mascotPhrases = [
+        "Let's make RNTU plastic-free today! 🌿",
+        "Every kg of recycled waste counts towards our green score! ♻️",
+        "Did you check out our new 3R Marketplace? 🛍️",
+        "Powered by C++ routing algorithms and elite JavaScript! ⚡"
+    ];
+
+    function reactMascot() {
+        const speechBubble = document.getElementById('mascotSpeech');
+        const randomPhrase = mascotPhrases[Math.floor(Math.random() * mascotPhrases.length)];
+        speechBubble.style.opacity = '0';
+        setTimeout(() => {
+            speechBubble.innerText = randomPhrase;
+            speechBubble.style.opacity = '1';
+        }, 200);
+    }
+</script>
